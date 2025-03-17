@@ -58,6 +58,7 @@ public class ScimController {
 	@PostMapping(value = "/Users")
 	public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest request) {
 		logger.info("enter post rest");
+		logger.info(request.isActive()+" hiba");
 		CreateUserResponse response= CreateUserResponse.builder().schemas(request.getSchemas()).id(request.getUserName()).active(true).build();
 		logger.info(request.getCreatedBy()+" hiba");
 		//request1.setId("hiba.rezquellah@cpexterne.org");
@@ -67,7 +68,7 @@ public class ScimController {
 	@PutMapping(value = "/Users/{userName}")
 	public ResponseEntity<CreateUserResponse> updateUser(@RequestBody CreateUserRequest request) {
 		logger.info("enter put rest");
-		logger.info(request.getCreatedBy()+" hiba");
+		logger.info(request.isActive()+" hiba");
 		CreateUserResponse response= CreateUserResponse.builder().id(request.getUserName()).build();
 		//CreateUserResponse response= CreateUserResponse.builder().schemas(request.getSchemas())
 		//		.userName(request.getUserName()).name(request.getName()).emails(request.getEmails()).profileDetails(request.getProfileDetails()).build();
