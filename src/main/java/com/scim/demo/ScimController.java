@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -70,6 +71,17 @@ public class ScimController {
 		logger.info("enter put rest");
 		logger.info(request.isActive()+" hiba");
 		CreateUserResponse response= CreateUserResponse.builder().id(request.getUserName()).build();
+		//CreateUserResponse response= CreateUserResponse.builder().schemas(request.getSchemas())
+		//		.userName(request.getUserName()).name(request.getName()).emails(request.getEmails()).profileDetails(request.getProfileDetails()).build();
+		logger.info(request+" hiba");
+		return ResponseEntity.ok(response);
+	}
+	
+	@PatchMapping(value = "/Users/{userName}")
+	public ResponseEntity<CreateUserResponse> patchUser(@RequestBody Object request) {
+		logger.info("enter put rest");
+		logger.info(request+" hiba");
+		CreateUserResponse response= CreateUserResponse.builder().id("request.getUserName()").build();
 		//CreateUserResponse response= CreateUserResponse.builder().schemas(request.getSchemas())
 		//		.userName(request.getUserName()).name(request.getName()).emails(request.getEmails()).profileDetails(request.getProfileDetails()).build();
 		logger.info(request+" hiba");
