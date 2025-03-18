@@ -78,10 +78,10 @@ public class ScimController {
 	}
 	
 	@PatchMapping(value = "/Users/{userName}")
-	public ResponseEntity<CreateUserResponse> patchUser(@PathVariable String oktaLogin, @RequestBody DeactivateScimUserRequest request) {
+	public ResponseEntity<CreateUserResponse> patchUser(@PathVariable String userName, @RequestBody DeactivateScimUserRequest request) {
 		logger.info("enter put rest");
 		logger.info(request+" hiba");
-		CreateUserResponse response= CreateUserResponse.builder().id(oktaLogin).build();
+		CreateUserResponse response= CreateUserResponse.builder().id(userName).build();
 		//CreateUserResponse response= CreateUserResponse.builder().schemas(request.getSchemas())
 		//		.userName(request.getUserName()).name(request.getName()).emails(request.getEmails()).profileDetails(request.getProfileDetails()).build();
 		logger.info(request+" hiba");
