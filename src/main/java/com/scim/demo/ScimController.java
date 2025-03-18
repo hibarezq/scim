@@ -34,7 +34,7 @@ public class ScimController {
 		UserResponse response= UserResponse.builder().build();
 		
 		
-		return ResponseEntity.ok(UserResponse.builder().schemas(List.of("urn:ietf:params:scim:api:messages:2.0:ListResponse")).totalResults(1).startIndex(1).itemsPerPage(1).Resources(List.of()).build());
+		return ResponseEntity.ok(UserResponse.builder().schemas(List.of("urn:ietf:params:scim:api:messages:2.0:ListResponse")).totalResults(1).startIndex(1).itemsPerPage(1).Resources(List.of(ScimUser.builder().userName("gk").id("gk").active(true).build())).build());
 	}
 	/*
 	@GetMapping(value = "/Users")
