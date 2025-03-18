@@ -34,7 +34,7 @@ public class ScimController {
 		UserResponse response= UserResponse.builder().build();
 		
 		
-		return ResponseEntity.ok(UserResponse.builder().schemas(List.of("urn:ietf:params:scim:api:messages:2.0:ListResponse")).totalResults(0).startIndex(1).itemsPerPage(0).Resources(List.of()).build());
+		return ResponseEntity.ok(UserResponse.builder().schemas(List.of("urn:ietf:params:scim:api:messages:2.0:ListResponse")).totalResults(1).startIndex(1).itemsPerPage(1).Resources(List.of()).build());
 	}
 	/*
 	@GetMapping(value = "/Users")
@@ -50,7 +50,7 @@ public class ScimController {
 	@GetMapping(value = "/Users/{userName}")
 	public ResponseEntity<CreateUserResponse> findByIdd(@PathVariable String userName) {
 		logger.info("enter get rest");
-		CreateUserResponse responsee= CreateUserResponse.builder().schemas(List.of("")).id("hiba.rezquellah@cpexterne.org").build();
+		CreateUserResponse responsee= CreateUserResponse.builder().schemas(List.of("")).id("gk").build();
 		
 		
 		return ResponseEntity.ok(responsee);
