@@ -34,7 +34,7 @@ public class ScimController {
 		UserResponse response= UserResponse.builder().build();
 		
 		
-		return ResponseEntity.ok(UserResponse.builder().schemas(List.of("urn:ietf:params:scim:api:messages:2.0:ListResponse")).totalResults(1).startIndex(1).itemsPerPage(1).Resources(List.of(ScimUser.builder().userName("gk").id("gk").active(true).build())).build());
+		return ResponseEntity.ok(UserResponse.builder().schemas(List.of("urn:ietf:params:scim:api:messages:2.0:ListResponse")).totalResults(1).startIndex(1).itemsPerPage(1).Resources(List.of()).build());
 	}
 	/*
 	@GetMapping(value = "/Users")
@@ -57,20 +57,20 @@ public class ScimController {
 	}
 
 	@PostMapping(value = "/Users")
-	public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest request) {
+	public ResponseEntity<CreateUserResponse> createUser(@RequestBody Object request) {
 		logger.info("enter post rest");
-		logger.info(request.isActive()+" hiba");
-		CreateUserResponse response= CreateUserResponse.builder().schemas(request.getSchemas()).id(request.getUserName()).active(true).build();
-		logger.info(request.getCreatedBy()+" hiba");
+		logger.info(request+" hiba");
+		CreateUserResponse response= CreateUserResponse.builder().id("request.getUserName()").active(true).build();
+		//logger.info(request.getCreatedBy()+" hiba");
 		//request1.setId("hiba.rezquellah@cpexterne.org");
-		return ResponseEntity.created(URI.create(String.format("/users/%s", request.getUserName()))).body(response);
+		return ResponseEntity.created(URI.create(String.format("/users/%s", "request.getUserName()"))).body(response);
 	}
 	
 	@PutMapping(value = "/Users/{userName}")
-	public ResponseEntity<CreateUserResponse> updateUser(@RequestBody CreateUserRequest request) {
+	public ResponseEntity<CreateUserResponse> updateUser(@RequestBody Object request) {
 		logger.info("enter put rest");
-		logger.info(request.isActive()+" hiba");
-		CreateUserResponse response= CreateUserResponse.builder().id(request.getUserName()).build();
+		logger.info(request+" hiba");
+		CreateUserResponse response= CreateUserResponse.builder().id("request.getUserName()").build();
 		//CreateUserResponse response= CreateUserResponse.builder().schemas(request.getSchemas())
 		//		.userName(request.getUserName()).name(request.getName()).emails(request.getEmails()).profileDetails(request.getProfileDetails()).build();
 		logger.info(request+" hiba");
@@ -78,13 +78,13 @@ public class ScimController {
 	}
 	
 	@PatchMapping(value = "/Users/{userName}")
-	public ResponseEntity<CreateUserResponse> patchUser(@PathVariable String userName, @RequestBody DeactivateScimUserRequest request) {
+	public ResponseEntity<Void> patchUser(@PathVariable String userName, @RequestBody DeactivateScimUserRequest request) {
 		logger.info("enter put rest");
 		logger.info(request+" hiba");
 		CreateUserResponse response= CreateUserResponse.builder().id(userName).build();
 		//CreateUserResponse response= CreateUserResponse.builder().schemas(request.getSchemas())
 		//		.userName(request.getUserName()).name(request.getName()).emails(request.getEmails()).profileDetails(request.getProfileDetails()).build();
 		logger.info(request+" hiba");
-		return ResponseEntity.ok(response);
+		return ResponseEntity.noContent().build();
 	}
 }
